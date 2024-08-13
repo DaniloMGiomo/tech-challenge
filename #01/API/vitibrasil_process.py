@@ -12,6 +12,12 @@ endpoint = 'http://vitibrasil.cnpuv.embrapa.br/index.php'
 database = UpdateDatabase()
 
 def get_date_interval() -> list[int]:
+    """
+    Retrieves the date interval from the specified endpoint.
+
+    Returns:
+        list[int]: A list containing the maximum and minimum dates.
+    """
     endpoint = 'http://vitibrasil.cnpuv.embrapa.br/index.php?opcao=opt_02'
     # 
     response = requests.get(endpoint)
@@ -30,6 +36,18 @@ def get_date_interval() -> list[int]:
 
 
 def validate_date(date: int):
+    """
+    Validates a given date by comparing it to the minimum and maximum dates.
+
+    Args:
+        date (int): The date to be validated.
+
+    Raises:
+        HTTPException: If the date is not within the range of minimum and maximum dates.
+
+    Returns:
+        bool: True if the date is within the range, False otherwise.
+    """
     if date < min_date or date > max_date:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, 
@@ -39,6 +57,18 @@ def validate_date(date: int):
         return True
 
 def request_data(params:dict, opt:str, subopt:str=None, IEL='L'):
+    """
+    Sends a GET request to the endpoint with the provided parameters and returns a pandas DataFrame.
+    
+    The function expects the following parameters:
+    - params (dict): A dictionary containing the parameters for the GET request.
+    - opt (str): A string representing the option for the request.
+    - subopt (str): An optional string representing the sub-option for the request. Defaults to None.
+    - IEL (str): A string representing the Import/Export Label. Defaults to 'L'.
+    
+    The function returns a pandas DataFrame containing the data from the response, 
+    with the columns renamed and data types converted according to the schema.
+    """
     # 
     local_schema = {
         'Produto' : str,
@@ -94,6 +124,29 @@ def request_data(params:dict, opt:str, subopt:str=None, IEL='L'):
     return df
 
 def get_data(params:dict, opt:str, subopt:str='0', IEL='L', database=database):
+    """
+    Retrieves data from the database based on the provided parameters.
+
+    Args:
+        params (dict): A dictionary containing the parameters for the data retrieval.
+            - 'ano' (int): The year to filter the data by.
+        opt (str): The option for the data retrieval.
+        subopt (str, optional): The sub-option for the data retrieval. Defaults to '0'.
+        IEL (str, optional): The Import/Export Label. Defaults to 'L'.
+        database (object, optional): The database object to use for data retrieval. Defaults to the global 'database' object.
+
+    Returns:
+        pandas.DataFrame: The retrieved data.
+
+    This function retrieves data from the database based on the provided parameters. It first checks if the data is already present in the database. If not, it requests the data using the 'request_data' function and updates the database accordingly. The retrieved data is then returned.
+
+    Note:
+        - The 'database' object must have the following attributes:
+            - 'df_local' (pandas.DataFrame): The local database.
+            - 'df_ImportExport' (pandas.DataFrame): The import/export database.
+            - 'update_database_L' (function): The function to update the local database.
+            - 'update_database_IE' (function): The function to update the import/export database.
+    """
     if IEL == 'L':
         df = database.df_local.copy()
         df.query("opt == @opt and subopt == @subopt and ano == @params['ano']", inplace=True)

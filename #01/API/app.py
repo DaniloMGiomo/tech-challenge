@@ -26,6 +26,16 @@ UserIn_Pydantic = pydantic_model_creator(User, name='UserIn', exclude_readonly=T
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
 
 async def authenticate_user(username: str, password: str):
+    """
+    Authenticates a user based on the provided username and password.
+
+    Args:
+        username (str): The username of the user to authenticate.
+        password (str): The password of the user to authenticate.
+
+    Returns:
+        The authenticated user object if authentication is successful, False otherwise.
+    """
     user = await User.get(username=username)
     if not user:
         return False 
@@ -34,6 +44,18 @@ async def authenticate_user(username: str, password: str):
     return user 
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
+    """
+    Retrieves the current user based on the provided token.
+
+    Args:
+        token (str): The authentication token. Defaults to Depends(oauth2_scheme).
+
+    Returns:
+        User_Pydantic: The current user object.
+
+    Raises:
+        HTTPException: If the token is invalid or the user is not found.
+    """
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
         user = await User.get(id=payload.get('id'))
@@ -48,10 +70,27 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 
 @app.get('/')
 async def welcome():
+    """just a welcome message
+
+    Returns:
+        dict: a welcome message and the API version
+    """
     return {'msg': 'Welcome to 2MLET vitivinicultura API!', 'version': '0'}
 
 @app.post('/token')
 async def generate_token(form_data: OAuth2PasswordRequestForm = Depends()):
+    """
+    Generates an access token for a user based on their provided credentials.
+
+    Args:
+        form_data (OAuth2PasswordRequestForm): The form data containing the user's username and password.
+
+    Returns:
+        dict: A dictionary containing the access token and its type.
+
+    Raises:
+        HTTPException: If the provided username or password is invalid.
+    """
     user = await authenticate_user(form_data.username, form_data.password)
     if not user:
         raise HTTPException(
@@ -64,6 +103,16 @@ async def generate_token(form_data: OAuth2PasswordRequestForm = Depends()):
 
 @app.get('/get_producao/{ano}')
 async def get_producao(ano: int, token: str = Depends(get_current_user)):
+    """
+    Retrieves production data for a given year.
+
+    Args:
+        ano (int): The year for which to retrieve production data.
+        token (str): The authentication token. Defaults to the current user's token.
+
+    Returns:
+        dict: A dictionary containing the production data for the given year, with each row represented as a dictionary.
+    """
     if validate_date(ano):
         params = {
             'ano' : ano,
@@ -76,6 +125,17 @@ async def get_producao(ano: int, token: str = Depends(get_current_user)):
 
 @app.get('/get_processamento/{subopt}/{ano}')
 async def get_processamento(subopt: SuboptProcessamento, ano: int, token: str = Depends(get_current_user)):
+    """
+    Retrieves the processamento data for a given subopt and ano.
+
+    Args:
+        subopt (SuboptProcessamento): The subopt to filter the data by.
+        ano (int): The year to filter the data by.
+        token (str): The authentication token. Defaults to the current user's token.
+
+    Returns:
+        dict: A dictionary containing the processamento data in records format.
+    """
     if validate_date(ano):
         params = {
             'ano' : ano,
@@ -94,6 +154,16 @@ async def get_processamento(subopt: SuboptProcessamento, ano: int, token: str = 
 
 @app.get('/get_comercializacao/{ano}')
 async def get_comercializacao(ano: int, token: str = Depends(get_current_user)):
+    """
+    Retrieves the commercialization data for a given year.
+
+    Args:
+        ano (int): The year for which to retrieve the commercialization data.
+        token (str, optional): The authentication token. Defaults to the current user's token.
+
+    Returns:
+        dict: A dictionary containing the commercialization data for the given year, with each row represented as a dictionary.
+    """
     if validate_date(ano):
         params = {
             'ano' : ano,
@@ -105,6 +175,17 @@ async def get_comercializacao(ano: int, token: str = Depends(get_current_user)):
 
 @app.get('/get_importacao/{subopt}/{ano}')
 async def get_importacao(subopt: SuboptImportacao, ano: int, token: str = Depends(get_current_user)):
+    """
+    Retrieves the importacao data for a given subopt and ano.
+
+    Args:
+        subopt (SuboptImportacao): The subopt to filter the data by.
+        ano (int): The year to filter the data by.
+        token (str): The authentication token. Defaults to the current user's token.
+
+    Returns:
+        dict: A dictionary containing the importacao data in records format.
+    """
     if validate_date(ano):
         IEL = 'I'
         params = {
@@ -124,6 +205,17 @@ async def get_importacao(subopt: SuboptImportacao, ano: int, token: str = Depend
 
 @app.get('/get_exportacao/{subopt}/{ano}')
 async def get_exportacao(subopt: SuboptExportacao, ano: int, token: str = Depends(get_current_user)):
+    """
+    Retrieves the exportacao data for a given subopt and ano.
+
+    Args:
+        subopt (SuboptExportacao): The subopt to filter the data by.
+        ano (int): The year to filter the data by.
+        token (str, optional): The authentication token. Defaults to the current user's token.
+
+    Returns:
+        dict: A dictionary containing the exportacao data in records format.
+    """
     if validate_date(ano):
         IEL = 'E'
         params = {
