@@ -9,6 +9,6 @@ RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install pyjwt
 
-COPY /home/ec2-user/tech-challenge/challenge/API /fastapi
+COPY /home/ec2-user/tech-challenge/#01/API /fastapi
 
 EXPOSE 8080
