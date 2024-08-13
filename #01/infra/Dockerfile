@@ -9,6 +9,6 @@ RUN python -m pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install pyjwt
 
-COPY ./fastapi /fastapi
+COPY ../API /fastapi
 
 EXPOSE 8080
