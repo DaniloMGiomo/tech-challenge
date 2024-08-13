@@ -21,3 +21,7 @@ sudo dnf install git -y
 # tech-challenge clone
 git clone https://github.com/DaniloMGiomo/tech-challenge.git
 
+# run docker compose
+export API_PATH=$(pwd)/API
+
+cd tech-challenge/#01/infra && docker-compose up -d
