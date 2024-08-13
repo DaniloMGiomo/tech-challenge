@@ -7,4 +7,4 @@ services:
       - "./API:/fastapi"
     ports:
       - "8080:8080"
-    command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
+    command: uvicorn app:app --reload --host 0.0.0.0 --port 8080
