@@ -1,6 +1,7 @@
 ![image](https://github.com/user-attachments/assets/8df02962-d39d-468c-b3d9-7b317d398a2d)
 
 <img width="719" alt="image" src="https://github.com/user-attachments/assets/1906b399-8a9d-45e2-97b5-ceb5175023b8">
+
 Temos dois processos nesse projeto;
   Processo de descoberta de arquivos para criação do 'banco de dados' em arquivos parquet:
   ![image](https://github.com/user-attachments/assets/a3dee7c6-12f5-41b7-8e5d-71fe791ab531)
