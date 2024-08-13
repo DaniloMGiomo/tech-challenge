@@ -36,9 +36,6 @@ endpoints:
     get_exportacao:
 ![image](https://github.com/user-attachments/assets/2480d8b7-1a2d-4878-88ce-b4069d87f39d)
 
-usuário: test
-senha: test
-
 
 ![image](https://github.com/user-attachments/assets/a627630e-3086-4520-987e-d046905edcf7)
 a API e todos sub-codigos estão com suas respectivas dog-strings e comentários:
@@ -50,7 +47,8 @@ a API e todos sub-codigos estão com suas respectivas dog-strings e comentários
 ![image](https://github.com/user-attachments/assets/4dad23f2-5618-4bf8-9a37-8383db52d5b1)
 e está protegida pelo metodo de autenticação JWT:
 <img width="719" alt="image" src="https://github.com/user-attachments/assets/9e2f1918-b611-40e4-bc2e-8f6222baa8d8">
-
+usuário: test
+senha: test
 
 ![image](https://github.com/user-attachments/assets/cb3a4c8d-c13d-4f3e-a42b-726e526c3e5b)
 A aplicação está conteinerizada sendo necessário apenas executar o arquivo 'startup.sh'
