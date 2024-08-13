@@ -1,21 +1,21 @@
 ![image](https://github.com/user-attachments/assets/8df02962-d39d-468c-b3d9-7b317d398a2d)
 
-<img width="719" alt="image" src="https://github.com/user-attachments/assets/1906b399-8a9d-45e2-97b5-ceb5175023b8">Temos dois processos nesse projeto;
+<img width="719" alt="image" src="https://github.com/user-attachments/assets/1906b399-8a9d-45e2-97b5-ceb5175023b8">
+Temos dois processos nesse projeto;
+  Processo de descoberta de arquivos para criação do 'banco de dados' em arquivos parquet:
+  ![image](https://github.com/user-attachments/assets/a3dee7c6-12f5-41b7-8e5d-71fe791ab531)
+  
+    Este processo consiste em 'scrapar' todas paginas do site e coletar todos dados referente às paginas encontradas, utilizando a API de back-end do site
 
-Processo de descoberta de arquivos para criação do 'banco de dados' em arquivos parquet:
-![image](https://github.com/user-attachments/assets/a3dee7c6-12f5-41b7-8e5d-71fe791ab531)
-
-  Este processo consiste em 'scrapar' todas paginas do site e coletar todos dados referente às paginas encontradas, utilizando a API de back-end do site
-
-Processo da API:
-![image](https://github.com/user-attachments/assets/b97d1722-602f-4dc1-9d57-5b246b8557a5)
-
-  1. Quando o usuário seleciona o dado via API busca os dados no 'banco.parquet'
-  2. Havendo dado ele retorna os dados sem necessidade de coletar no site da embrapa
-  3. Não tendo os dados ele busca no site da embrapa
-  4. Se encontrado o dado ele appenda no nosso 'banco.parquet' e retorna os dados na API
-  5. Não encontrando dado na fonte ele retorna mensagem de erro:
-     ![image](https://github.com/user-attachments/assets/5958e4ec-a491-487b-89aa-0f68caab4999)
+  Processo da API:
+  ![image](https://github.com/user-attachments/assets/b97d1722-602f-4dc1-9d57-5b246b8557a5)
+  
+    1. Quando o usuário seleciona o dado via API busca os dados no 'banco.parquet'
+    2. Havendo dado ele retorna os dados sem necessidade de coletar no site da embrapa
+    3. Não tendo os dados ele busca no site da embrapa
+    4. Se encontrado o dado ele appenda no nosso 'banco.parquet' e retorna os dados na API
+    5. Não encontrando dado na fonte ele retorna mensagem de erro:
+       ![image](https://github.com/user-attachments/assets/5958e4ec-a491-487b-89aa-0f68caab4999)
 
 endpoints:
 ![image](https://github.com/user-attachments/assets/4ab4564f-3f27-48e1-879e-45131761783a)
