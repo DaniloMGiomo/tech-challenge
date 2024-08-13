@@ -1,0 +1,10 @@
+version: '3'
+services:
+  api:
+    build: .
+    image: fastapi
+    volumes:
+      - "./fastapi:/fastapi"
+    ports:
+      - "8080:8080"
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
