@@ -40,7 +40,6 @@ está sendo executada nua maquina EC2 t2.small na AWS, sendo acessível pela url
 e está protegida pelo metodo de autenticação JWT:
 <img width="719" alt="image" src="https://github.com/user-attachments/assets/9e2f1918-b611-40e4-bc2e-8f6222baa8d8">
 
-
-  usuário: test
-  senha: test
+usuário: test
+senha: test
 
