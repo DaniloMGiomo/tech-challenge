@@ -38,7 +38,8 @@ A aplicação está conteinerizada sendo necessário apenas executar o arquivo '
 está sendo executada nua maquina EC2 t2.small na AWS, sendo acessível pela url: https://52.206.210.53:8080/docs
 
 e está protegida pelo metodo de autenticação JWT:
-![Uploading image.png…]()
+<img width="719" alt="image" src="https://github.com/user-attachments/assets/9e2f1918-b611-40e4-bc2e-8f6222baa8d8">
+
 
   usuário: test
   senha: test
