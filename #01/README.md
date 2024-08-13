@@ -3,7 +3,7 @@
 <img width="719" alt="image" src="https://github.com/user-attachments/assets/1906b399-8a9d-45e2-97b5-ceb5175023b8">
 
 Temos dois processos nesse projeto;
-  Processo de descoberta de arquivos para criação do 'banco de dados' em arquivos parquet:
+Processo de descoberta de arquivos para criação do 'banco de dados' em arquivos parquet:
   ![image](https://github.com/user-attachments/assets/a3dee7c6-12f5-41b7-8e5d-71fe791ab531)
   
     Este processo consiste em 'scrapar' todas paginas do site e coletar todos dados referente às paginas encontradas, utilizando a API de back-end do site
