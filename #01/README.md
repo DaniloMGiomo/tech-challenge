@@ -62,4 +62,4 @@ o banco de dados será transferido pra um S3 para mair confiabilidade posteriorm
 
 
 ![image](https://github.com/user-attachments/assets/a96a1ba1-2896-40e7-a50c-b950726616b9)
-sendo acessível pela url: https://52.206.210.53:8080/docs
+sendo acessível pela url: http://52.206.210.53:8080/docs
